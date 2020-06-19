@@ -18,16 +18,20 @@ export default class ProductTable extends Component {
            //this.renderTableData=this.renderTableData.bind(this)
       }
       render() {
-            let categorS;
-            let itemHeadS;
-           categorS= this.state.data.map((item,index)=>{
-                  if(item.category==="Sporting Goods"){
-                        itemHeadS="Sporting"
-                       return <ProductCategoryRow itemName={item.name} itemPrice={item.price} itemCategory={item.category} index={index}/>
-                  }
+            
+            let boxes;
+            
+          
+                 
                   
+            let rows= this.state.data.map((item,index)=>{
+                  if(item.category==="Sporting Goods"){
+                        
+                        return <ProductRow itemName={item.name} itemPrice={item.price} index={index}/>
+                   }
             })
 
+/* 
             let categorE;
             let itemHeadE;
            categorE= this.state.data.map((item,index)=>{
@@ -36,8 +40,9 @@ export default class ProductTable extends Component {
                         itemHeadE="Elec"
                        return <ProductCategoryRow itemName={item.name} itemPrice={item.price} itemCategory={item.category} index={index}/>
                   }
+                  return;
             })
-
+ */
 
 
             return (
@@ -47,11 +52,9 @@ export default class ProductTable extends Component {
                               <ProductHeader data={this.state.data[0]}/>
                               <br/>
                               <br/>
-                              {itemHeadS}
-                              {categorS}
-                              {itemHeadE}
-                              {categorE}
-
+                              
+                              {boxes}
+                              
 
                         
                   
@@ -63,7 +66,7 @@ export default class ProductTable extends Component {
 
 
 
-function ProductCategoryRow(props) {
+function ProductCategoryRow() {
       var upper=[];
       upper.push(
       <div>
@@ -109,9 +112,9 @@ function ProductHeader(props){
             if(key==="name" || key==="price"){
                   return(
                   
-                        <th key={index}>
+                        
                              {key}
-                        </th>
+                        
                   )
             }
             return;
