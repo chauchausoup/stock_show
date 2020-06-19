@@ -1,0 +1,12 @@
+
+.App{
+margin: auto auto auto auto;
+border: 2px solid black;
+height: 70vh;
+width: 35vw;
+}
+
+
+.searchBar{
+      width: auto;
+}
