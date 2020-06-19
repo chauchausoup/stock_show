@@ -1,39 +1,15 @@
 import React, { Component } from 'react'
 
+
 export default class ProductTable extends Component {
       
       render() {
             
-            let boxes=[];
-
-          
-                 
-                  
-            let rows= this.state.data.map((item,index)=>{
-                  if(item.category==="Sporting Goods"){
-                        
-                        return <ProductRow itemName={item.name} itemPrice={item.price} index={index}/>
-                   }
-            })
-
-/* 
-            let categorE;
-            let itemHeadE;
-           categorE= this.state.data.map((item,index)=>{
-                  
-                  if(item.category==="Electronics"){
-                        itemHeadE="Elec"
-                       return <ProductCategoryRow itemName={item.name} itemPrice={item.price} itemCategory={item.category} index={index}/>
-                  }
-                  return;
-            })
- */
-
-
+            
+            let data = this.props.data;
+            
             return (
                   <div>
-                 
-                        
                               <table>
                                     <thead>
                                           <tr>
@@ -42,58 +18,92 @@ export default class ProductTable extends Component {
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          {boxes}
+                                          <Product categoryName={["Sporting Goods","Electronics"]} data={data}/>
+
                                     </tbody>
                               </table>
-                              {boxes}
-                              
-
-                        
-                  
-
+                             
                   </div>
             )
       }
 }
 
+function Product(props){
+      //categoryName
+      //data
 
-
-function ProductCategoryRow() {
-      var upper=[];
-      upper.push(
-      <div>
-            
-            {props.itemPrice}
-            
-            {props.itemName}
-
-      </div>
       
-      );
+
+      return(
+            
+
+            props.categoryName.map(category=>{
+                  
+                  return(
+                        <React.Fragment>
+                              <ProductCategoryRow categor={category} key={props.categoryName}/>
+                              <ProductRow categor={category} data={props.data} />
+                        </React.Fragment>
+                        
+                  )
+                                
+            })
+      
+      )
+      
+}
+
+function ProductCategoryRow(props) {
 
       return (
-            <div>
-                  
-                 
-
-                       
-                              {upper}
-
-                        
-                
-                  
-            </div>
+           
+            <tr>
+                  {props.categor}
+            </tr>
+            
+            
       )
 }
 
 
-function ProductRow() {
-      return (
-            <div>
-                  
-            </div>
-      )
+function ProductRow(props) {
+
+      var sItems=[];
+      var eItems=[];
+      var c= props.categor;
+
+     props.data.forEach((item)=>{
+
+          
+      if(item.category==="Sporting Goods"){
+            
+            sItems.push(
+                  <tr key={item.name}>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  </tr>
+            )    
       }
+      if(item.category==="Electronics"){
+            
+            eItems.push(
+                  <tr key={item.name}>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  </tr>
+            )    
+      }
+      
+
+     })
+     
+
+return(
+      c === "Sporting Goods" ?  sItems : eItems 
+      
+)
+     
+}
 
 
 
