@@ -8,7 +8,7 @@ export default class FilterableProductTable extends Component {
                   <div>
                         <SearchBar/>
                         <hr/>
-                        <ProductTable/>
+                        <ProductTable data={this.props.data}/>
                   </div>
             )
       }

@@ -1,26 +1,11 @@
 import React, { Component } from 'react'
 
 export default class ProductTable extends Component {
-      constructor(props){
-            super(props);
-            this.state={
-                  data:[
-                        {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-                        {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-                        {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
-                        {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-                        {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
-                        {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-                      ]
-            }
-
-            
-           //this.renderTableData=this.renderTableData.bind(this)
-      }
+      
       render() {
             
-            let boxes;
-            
+            let boxes=[];
+
           
                  
                   
@@ -49,10 +34,17 @@ export default class ProductTable extends Component {
                   <div>
                  
                         
-                              <ProductHeader data={this.state.data[0]}/>
-                              <br/>
-                              <br/>
-                              
+                              <table>
+                                    <thead>
+                                          <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {boxes}
+                                    </tbody>
+                              </table>
                               {boxes}
                               
 
@@ -101,29 +93,7 @@ function ProductRow() {
                   
             </div>
       )
-}
-
-function ProductHeader(props){
-
-      let header = Object.keys(props.data);// what the idea is this?
-
-      return header.map((key,index)=>{
-                     
-            if(key==="name" || key==="price"){
-                  return(
-                  
-                        
-                             {key}
-                        
-                  )
-            }
-            return;
-
-           
-           
-      })
-
-}
+      }
 
 
 

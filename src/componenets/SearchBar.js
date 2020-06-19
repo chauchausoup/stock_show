@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 export default class SearchBar extends Component {
       render() {
             return (
-                  <div>
+                  <form>
                         <input type="text" 
                         className="searchBar" 
                         placeholder="Search"
@@ -19,7 +19,7 @@ export default class SearchBar extends Component {
                         />
                         Only show product in stock.
 
-                  </div>
+                  </form>
             )
       }
 }

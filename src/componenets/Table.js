@@ -57,10 +57,7 @@ export default class Table extends Component {
                        
                         <table>
                               <tbody>
-                                    <tr>{this.renderTableHeader()}</tr>
-                                    
-                                   
-                                    
+                                    <tr>{this.renderTableHeader()}</tr>     
                               </tbody>
                         </table>
                   </div>
