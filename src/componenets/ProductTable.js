@@ -18,12 +18,27 @@ export default class ProductTable extends Component {
            //this.renderTableData=this.renderTableData.bind(this)
       }
       render() {
-            let categor;
-           categor= this.state.data.map((item,index)=>{
+            let categorS;
+            let itemHeadS;
+           categorS= this.state.data.map((item,index)=>{
                   if(item.category==="Sporting Goods"){
-                       return <ProductCategoryRow itemName={item.name} itemPrice={item.Price} itemCategory={item.category} index={index}/>
+                        itemHeadS="Sporting"
+                       return <ProductCategoryRow itemName={item.name} itemPrice={item.price} itemCategory={item.category} index={index}/>
+                  }
+                  
+            })
+
+            let categorE;
+            let itemHeadE;
+           categorE= this.state.data.map((item,index)=>{
+                  
+                  if(item.category==="Electronics"){
+                        itemHeadE="Elec"
+                       return <ProductCategoryRow itemName={item.name} itemPrice={item.price} itemCategory={item.category} index={index}/>
                   }
             })
+
+
 
             return (
                   <div>
@@ -32,7 +47,11 @@ export default class ProductTable extends Component {
                               <ProductHeader data={this.state.data[0]}/>
                               <br/>
                               <br/>
-                              {categor}
+                              {itemHeadS}
+                              {categorS}
+                              {itemHeadE}
+                              {categorE}
+
 
                         
                   
@@ -47,16 +66,20 @@ export default class ProductTable extends Component {
 function ProductCategoryRow(props) {
       var upper=[];
       upper.push(
-      <tr key={props.index}>
-      <td>{props.itemName}</td>
-      <td>{props.itemPrice}</td>
-      </tr>
+      <div>
+            
+            {props.itemPrice}
+            
+            {props.itemName}
+
+      </div>
+      
       );
 
       return (
             <div>
                   
-                  {props.itemCategory}
+                 
 
                        
                               {upper}
