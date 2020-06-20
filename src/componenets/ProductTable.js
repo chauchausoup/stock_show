@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+//props are
+//data
+//filterText
+//isStockOnly
 
 
 export default class ProductTable extends Component {
       
-      render() {
+      
+      render(props) {
             
             
             let data = this.props.data;
+            
             
             return (
                   <div>
@@ -18,7 +24,7 @@ export default class ProductTable extends Component {
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          <Product categoryName={["Sporting Goods","Electronics"]} data={data}/>
+                                          <Product categoryName={["Sporting Goods","Electronics"]} data={data} checked={this.props.inStockOnly} filterText={this.props.filterText}/>
 
                                     </tbody>
                               </table>
@@ -42,7 +48,7 @@ function Product(props){
                   return(
                         <React.Fragment>
                               <ProductCategoryRow categor={category} key={props.categoryName}/>
-                              <ProductRow categor={category} data={props.data} />
+                              <ProductRow categor={category} data={props.data} checked={props.checked} filterText={props.filterText}/>
                         </React.Fragment>
                         
                   )
@@ -73,9 +79,14 @@ function ProductRow(props) {
       var c= props.categor;
 
      props.data.forEach((item)=>{
+
       var i = !item.stocked ? <span style={{color:'red'}}><td>{item.name}</td></span> : <td>{item.name}</td>
 
-      if(item.category==="Sporting Goods"){
+      if(item.name.indexOf(props.filterText)===-1) return;
+      
+      if(!item.stocked && props.checked) return;
+
+      if(item.category==="Sporting Goods" ){
 
             sItems.push(
                   
@@ -85,7 +96,7 @@ function ProductRow(props) {
                   </tr>
             )    
       }
-      if(item.category==="Electronics"){
+      if(item.category==="Electronics"  ){
             eItems.push(
                   <tr key={item.name}>
                   <td>{i}</td>
